@@ -10,7 +10,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
 	<flow name="assesment2-sekharFlow" doc:id="0342d4a4-2097-4731-b88a-3b6d9362d98d" >
-		<http:listener doc:name="Listener" doc:id="f7cfda34-021d-4fd7-8a67-c45b56dac809" config-ref="HTTP_Listener_config" path="/checkproduct"/>
+		<http:listener doc:name="/checkproduct" doc:id="f7cfda34-021d-4fd7-8a67-c45b56dac809" config-ref="HTTP_Listener_config" path="/checkproduct"/>
 		<set-variable value="#[uuid()]" doc:name="correlationId" doc:id="6ae031ce-d7e3-4079-a78c-ecca56afdb28" variableName="correlationId"/>
 		<choice doc:name="Choice" doc:id="082d78ba-ca4f-4808-a418-5d4515181e8e" >
 			<when expression="#[((attributes.queryParams.productid&gt;= 10001 as Number) and (attributes.queryParams.productid&lt;99999 as Number))]">
@@ -30,7 +30,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		</choice>
 	</flow>
 	<flow name="assesment2-sekharFlow1" doc:id="02386763-05e7-4c6f-96d3-7d9f39b5488f" >
-		<http:listener doc:name="Listener" doc:id="f0709682-42be-4396-9588-1b0c2b7dd682" config-ref="HTTP_Listener_config" path="/getamount"/>
+		<http:listener doc:name="/getamount" doc:id="f0709682-42be-4396-9588-1b0c2b7dd682" config-ref="HTTP_Listener_config" path="/getamount"/>
 		<set-variable value="#[uuid()]" doc:name="Set Variable" doc:id="fcad90f2-1388-4a34-9997-71df5fccdeba" variableName="correlationId"/>
 		<java:new constructor="Sales()" doc:name="New" doc:id="329bfe74-a151-4765-a6fd-e5580a73ef72" class="assesment.Sales" target="objectstatic1"/>
 		<java:invoke doc:name="Invoke" doc:id="c9380a0b-fd9c-42ee-b75f-530b6ec061e4" instance="#[vars.objectstatic1]" class="assesment.Sales" method="getAmount(java.lang.String)">
